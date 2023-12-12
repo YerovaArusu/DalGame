@@ -25,8 +25,11 @@ public class CoinHandler : MonoBehaviour
     {
         if (other.GameObject() == Player.GameObject())
         {
-            Debug.Log("Du bist jetzt reicher als Kalvin!!!");
-            Destroy(this.GameObject());
+            StatsSystem pStats = Player.GetComponent<StatsSystem>();
+            if(pStats.canAddCoins(1)) {
+                pStats.addCoin();
+                Destroy(this.GameObject());
+            }
         }
     }
     
