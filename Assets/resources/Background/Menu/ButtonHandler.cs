@@ -19,6 +19,6 @@ public class ButtonHandler : MonoBehaviour
 
         void onStartButtonPress()
         {
-                SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+                SceneManager.LoadScene("SampleScene (1)", LoadSceneMode.Single);
         }
 }
