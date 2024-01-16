@@ -7,7 +7,7 @@ public class Inventory_UI : MonoBehaviour
 
     public GameObject inventoryPanel;
     public GameObject player;
-    public List<Slot_UI> slots = new List<Slot_UI>();
+   
     
     void Start()
     {

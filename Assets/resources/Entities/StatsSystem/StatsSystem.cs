@@ -33,6 +33,7 @@ public class StatsSystem : MonoBehaviour
     [Header("Coin")]
     [SerializeField] private int coins = 5;
     [SerializeField] public int maxCoins = 99;
+    public Inventory inventory;
     [SerializeField] public bool isPlayer = false;
     
     private GameObject healthBar;
@@ -41,6 +42,12 @@ public class StatsSystem : MonoBehaviour
     private int startTime;
     
     public UnityEvent<GameObject> OnHit, OnDeath;
+
+
+    void Awake()
+    {
+        inventory = new Inventory(40);
+    }
 
     void Start()
     {
