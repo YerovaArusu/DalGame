@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class StatsSystem : MonoBehaviour
@@ -32,7 +33,7 @@ public class StatsSystem : MonoBehaviour
     [Header("Coin")]
     [SerializeField] private int coins = 5;
     [SerializeField] public int maxCoins = 99;
-
+    [SerializeField] public bool isPlayer = false;
     
     private GameObject healthBar;
     private float passiveHealPerInstance = 5;
@@ -142,7 +143,7 @@ public class StatsSystem : MonoBehaviour
 
         health -= ignoreDefense ? removeHealth : getDamageWithDefense(removeHealth);
 
-        if (health > 0)
+        if (health > 0f)
         {
             OnHit?.Invoke(sender);
         }
@@ -150,7 +151,15 @@ public class StatsSystem : MonoBehaviour
         {
             OnDeath?.Invoke(sender);
             isDead = true;
-            Destroy(this.gameObject);
+            if (isPlayer)
+            {
+                SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
+
         }
     }
     
@@ -198,11 +207,11 @@ public class StatsSystem : MonoBehaviour
         coins = coins + amount <= maxCoins ? coins + amount : maxCoins;
     }
     public bool canAddCoins(int amount) {
-        if(coins += amount > maxCoins) return false; 
+        if(coins + amount > maxCoins) return false; 
         return true;
     }
 
-    private double getDamageWithDefense(float damage) {
+    private float getDamageWithDefense(float damage) {
         //TODO: maxHealth might be needed to be changed if that doesnt work 
         return damage * (1 + defense/100);
     }
