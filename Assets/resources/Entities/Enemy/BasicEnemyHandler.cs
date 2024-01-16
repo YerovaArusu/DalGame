@@ -32,8 +32,8 @@ public class BasicEnemyHandler : MonoBehaviour
     {
         if (other.gameObject == player)
         {
-            playerSystem.receiveDamage(20,this.gameObject);
-            enemySystem.receiveDamage(5,this.gameObject);
+            playerSystem.receiveDamage(20,this.gameObject, false);
+            enemySystem.receiveDamage(5,this.gameObject, false);
         }
     }
 

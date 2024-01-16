@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class StatsSystem : MonoBehaviour
@@ -23,9 +24,16 @@ public class StatsSystem : MonoBehaviour
     private float currentStamina;
     [HideInInspector]public bool hasStaminaRegenerated = true;
     [HideInInspector]public bool isSprinting = false;
-
     [SerializeField] private float staminaRegen = 2f;
     [SerializeField] private float staminaDrain = 2f;
+
+    [Header("Armor")]
+    [SerializeField] private float defense = 0;
+
+    [Header("Coin")]
+    [SerializeField] private int coins = 5;
+    [SerializeField] public int maxCoins = 99;
+    [SerializeField] public bool isPlayer = false;
     
     private GameObject healthBar;
     private float passiveHealPerInstance = 5;
@@ -41,7 +49,6 @@ public class StatsSystem : MonoBehaviour
         healthBar = Instantiate(healthBarPreFab, gameObject.transform);
 
         currentStamina = maxStamina;
-
 
         //Adjusts the local placement of the healthbar
         healthBar.transform.localPosition = new Vector3(healthBar.transform.localPosition.x, healthBarOffset);
@@ -127,16 +134,16 @@ public class StatsSystem : MonoBehaviour
         if (health <= 0) Destroy(gameObject);
     }
 
-    public void receiveDamage(float removeHealth, GameObject sender)
+    public void receiveDamage(float removeHealth, GameObject sender, bool ignoreDefense)
     {
         if (isDead )
         {
             return;
         }
 
-        health -= removeHealth;
+        health -= ignoreDefense ? removeHealth : getDamageWithDefense(removeHealth);
 
-        if (health > 0)
+        if (health > 0f)
         {
             OnHit?.Invoke(sender);
         }
@@ -144,7 +151,15 @@ public class StatsSystem : MonoBehaviour
         {
             OnDeath?.Invoke(sender);
             isDead = true;
-            Destroy(this.gameObject);
+            if (isPlayer)
+            {
+                SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+            }
+            else
+            {
+                Destroy(this.gameObject);
+            }
+
         }
     }
     
@@ -183,4 +198,22 @@ public class StatsSystem : MonoBehaviour
     {
         enbalePassiveHealing = false;
     }
+
+    public void addCoin() {
+        if(coins + 1 <= maxCoins) coins++;
+    }
+
+    public void addCoin(int amount) {
+        coins = coins + amount <= maxCoins ? coins + amount : maxCoins;
+    }
+    public bool canAddCoins(int amount) {
+        if(coins + amount > maxCoins) return false; 
+        return true;
+    }
+
+    private float getDamageWithDefense(float damage) {
+        //TODO: maxHealth might be needed to be changed if that doesnt work 
+        return damage * (1 + defense/100);
+    }
+
  }

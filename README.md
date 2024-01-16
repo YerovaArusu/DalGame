@@ -51,6 +51,9 @@
         - Addition of Armor Stats 
         - Improving the Methods used for Damage Calculation
         - Weapons will have a fixed Damage Value which is read from the read Weapon Object  
+        - Coins are now collected in the StatsSystem 
+
+
 
 
  ## Thanks to:

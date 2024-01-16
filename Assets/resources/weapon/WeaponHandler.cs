@@ -58,7 +58,7 @@ public class WeaponHandler : MonoBehaviour
         {
                 if (isAttacking && !collider.transform.IsChildOf(transform.parent) && collider.transform.GetComponent<Collider2D>().TryGetComponent<StatsSystem>(out StatsSystem system))
                 {
-                    system.receiveDamage(20, transform.parent.gameObject);
+                    system.receiveDamage(20, transform.parent.gameObject, false);
                 }
         }
     }
