@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +11,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int mapWidth = 100;
     [SerializeField] public int mapHeight = 100;
     [SerializeField] public GameObject wallPrefab;
+    [SerializeField] public List<GameObject> worldPrefabs;
+    [SerializeField] public GameObject defaultWorldTile;
+    [SerializeField] public LayerMask mapLayer;
     
     [Header("Enemy")]
     [SerializeField] public GameObject enemyPrefab;
@@ -19,7 +24,7 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
-        //generateWorldMap();
+        generateWorldMap();
         generateBorder();
         
         
@@ -51,22 +56,22 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i <= mapWidth; i++)
         {
             GameObject wallPieceAbove = wallPrefab;
-            wallPieceAbove.transform.position = new Vector3((-1 * mapWidth / 2) + i, mapHeight / 2, 0f);
+            wallPieceAbove.transform.position = new Vector3((-1 * mapWidth / 2) + i, mapHeight / 2, -0.1f);
             Instantiate(wallPieceAbove, mapParent.transform);
             
             GameObject wallPieceDown = wallPrefab;
-            wallPieceDown.transform.position = new Vector3((-1 * mapWidth / 2) + i, -1* mapHeight / 2, 0f);
+            wallPieceDown.transform.position = new Vector3((-1 * mapWidth / 2) + i, -1* mapHeight / 2, -0.1f);
             Instantiate(wallPieceDown, mapParent.transform);
         }
         
         for (int i = 0; i <= mapHeight; i++)
         {
             GameObject wallPieceLeft = wallPrefab;
-            wallPieceLeft.transform.position = new Vector3((-1 * mapWidth / 2), (-1 * mapHeight / 2) + i, 0f);
+            wallPieceLeft.transform.position = new Vector3((-1 * mapWidth / 2), (-1 * mapHeight / 2) + i, -0.1f);
             Instantiate(wallPieceLeft, mapParent.transform);
             
             GameObject wallPieceRight = wallPrefab;
-            wallPieceRight.transform.position = new Vector3((mapWidth / 2), (-1* mapHeight / 2)+i, 0f);
+            wallPieceRight.transform.position = new Vector3((mapWidth / 2), (-1* mapHeight / 2)+i, -0.1f);
             Instantiate(wallPieceRight, mapParent.transform);
         }
     }
@@ -79,11 +84,38 @@ public class GameManager : MonoBehaviour
         {
             for (int yPos = (-1* mapHeight/2); yPos <= mapHeight/2; yPos++)
             {
-                Vector3 pos = new Vector3(xPos, yPos, generateNoise(xPos, yPos, 8f));
-                GameObject block = Instantiate(wallPrefab, pos, Quaternion.identity) as GameObject;
+                float f = generateNoise(xPos, yPos, 8f);
+
+                GameObject defaultWorldObj = defaultWorldTile;
+                defaultWorldObj.transform.position = new Vector3(xPos, yPos, 0f);
+                Instantiate(defaultWorldObj, mapParent.transform);
                 
-                Destroy(block.GetComponent<Collider2D>());
-                block.transform.SetParent(mapParent.transform);
+                
+                if (f > 0.7f && Random.Range(0, 100) > 95)
+                {
+                    GameObject worldObj = getRandomGameObject(worldPrefabs);
+                    worldObj.transform.position = new Vector3(xPos, yPos, -0.01f);
+                    worldObj.transform.Rotate(Vector3.forward, 90 * Random.Range(0,3), Space.World);
+
+                    
+                    
+
+                    Instantiate(worldObj, mapParent.transform);
+                    
+                    //Does not work... YET
+                    Collider2D[] hitColliders = Physics2D.OverlapBoxAll(worldObj.transform.position, transform.localScale / 2, 0f, mapLayer);
+                    if (hitColliders.Length > 0)
+                    {
+                        for (int i = 0; i < hitColliders.Length; i++)
+                        {
+                            Destroy(hitColliders[i].GameObject());
+                        }
+                    }
+                }
+                
+
+                
+                
             }
         }
     }
@@ -94,6 +126,11 @@ public class GameManager : MonoBehaviour
         float yNoise = (y + this.transform.position.y) / detailScale;
 
         return Mathf.PerlinNoise(xNoise, yNoise);
+    }
+
+    public GameObject getRandomGameObject(List<GameObject> prefabs)
+    {
+        return prefabs[Random.Range(0,prefabs.Count-1)];
     }
     
 }

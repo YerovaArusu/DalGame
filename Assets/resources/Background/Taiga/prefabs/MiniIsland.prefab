@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4601855224880303644}
   - component: {fileID: 2303675691897530148}
   - component: {fileID: 5394447024656133973}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MiniIsland
   m_TagString: Untagged
   m_Icon: {fileID: 0}

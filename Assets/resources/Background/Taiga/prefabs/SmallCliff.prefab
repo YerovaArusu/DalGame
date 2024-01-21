@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7436347303949684849}
   - component: {fileID: 7503945789728023051}
   - component: {fileID: 6122812864467108458}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmallCliff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7311714294574673991}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.9266, y: 11.3463, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 94, y: 61, z: -0.01}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

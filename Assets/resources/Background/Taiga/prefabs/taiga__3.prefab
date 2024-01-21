@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3487732121023350158}
   - component: {fileID: 969023451675735855}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: taiga__3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

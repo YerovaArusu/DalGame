@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 640534704648093562}
   - component: {fileID: 3206564732107370741}
   - component: {fileID: 7741460388780192525}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SmallHole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8554952292130427055}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.75, y: 5.7, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
+  m_LocalPosition: {x: 100, y: 81, z: -0.01}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
