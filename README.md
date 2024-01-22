@@ -30,7 +30,7 @@
 
  - prior to 3.11.2023:
     * Marcel/Kalvin: Initial Creation of the project which includes creating basic movements, charachters, basic tiles for the map, basic stats system.
-    * marcel/Kalvin: Creation of a Simple Main Menu
+    * Marcel/Kalvin: Creation of a Simple Main Menu
     * Marcel/Kalvin: Simply learning to use the Unity Game Engine
 
  - 30.11.2023
@@ -52,9 +52,26 @@
         - Improving the Methods used for Damage Calculation
         - Weapons will have a fixed Damage Value which is read from the read Weapon Object  
         - Coins are now collected in the StatsSystem 
+- 19.12.2023
+  * Marcel: 
+      - Attempting to fix the error with the InventoryUI
+  * Kalvin: 
 
+- 21.12.2023
+  * Marcel:  
+      - Complete rework an change of approach for the inventory
+      - New Reference Video: https://www.youtube.com/watch?v=GXr2zNKN-fk&t=317s
 
+- 09.01.2024
+   * Marcel: 
+      -  Further Implementation of the Inventory
+- 16.09.2024
+   * Marcel: 
+      -  Implementation of a Collectible-System with different types of items for the invenotry
 
+18.09.2024 
+   * Marcel: 
+      - Combination of the Collectible-System and inventory
 
  ## Thanks to:
  - https://analogstudios.itch.io/ for the resources/sprites
