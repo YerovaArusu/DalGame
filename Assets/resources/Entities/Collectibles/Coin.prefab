@@ -175,4 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b30bc7b98b44804468774d9fd9e9d829, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 0}
   type: 1
+  icon: {fileID: 21300000, guid: 1a65a019d0ba1d64587b7c4948fce1f3, type: 3}

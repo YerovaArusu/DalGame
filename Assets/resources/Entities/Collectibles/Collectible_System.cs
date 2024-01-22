@@ -11,6 +11,7 @@ public class Collectible_System : MonoBehaviour
    private StatsSystem statsSystem;
    public GameObject Player;
    public Collectible_Type type;
+   public Sprite icon;
 
    private void Awake()
    {
@@ -23,7 +24,7 @@ public class Collectible_System : MonoBehaviour
       {
          Destroy(gameObject); // Destroy the current GameObject
          statsSystem = Player.GetComponent<StatsSystem>();
-         statsSystem.inventory.Add(type);
+         statsSystem.inventory.Add(this);
       }
    }
 }
