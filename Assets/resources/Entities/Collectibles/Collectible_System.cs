@@ -3,16 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Collectible_System : MonoBehaviour
 {
-   private GameObject Player;
+   private StatsSystem statsSystem;
+   public GameObject Player;
+   public Collectible_Type type;
+   public Sprite icon;
+
+   private void Awake()
+   {
+   Player = GameObject.FindGameObjectWithTag("Player");
+   }
 
    private void OnTriggerEnter2D(Collider2D other)
    {
-      if (other.GameObject() == Player.GameObject())
+      if (other.gameObject == Player.gameObject)
       {
-         Destroy(this.GameObject());
+         Destroy(gameObject); // Destroy the current GameObject
+         statsSystem = Player.GetComponent<StatsSystem>();
+         statsSystem.inventory.Add(this);
       }
    }
+}
+
+public enum Collectible_Type
+{
+   NONE, COIN
 }
