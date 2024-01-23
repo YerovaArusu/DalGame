@@ -135,13 +135,27 @@ MonoBehaviour:
   defense: 0
   coins: 5
   maxCoins: 99
+  inventory:
+    slots: []
   isPlayer: 0
   OnHit:
     m_PersistentCalls:
       m_Calls: []
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7499664305676733720}
+        m_TargetAssemblyTypeName: BasicEnemyHandler, Assembly-CSharp
+        m_MethodName: OnDeathDwarf
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7499664305676733720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +170,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   maxDistanceToPlayerWithoutReaction: 8
+  skullPrefab: {fileID: 6488104518804440324, guid: 7e1b9f9faec07e64dbc19a03ffdc6521, type: 3}
+  heartPrefab: {fileID: 799731277323320297, guid: 9c64bbb48779ead43a13be2b346fc131, type: 3}
 --- !u!95 &6577836506324171178
 Animator:
   serializedVersion: 5

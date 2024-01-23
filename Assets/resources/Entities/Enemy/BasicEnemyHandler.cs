@@ -17,6 +17,9 @@ public class BasicEnemyHandler : MonoBehaviour
     private Rigidbody2D rb;
     private StatsSystem enemySystem;
     private StatsSystem playerSystem;
+    public GameObject skullPrefab;
+    public GameObject heartPrefab;
+    
     
     void Start()
     {
@@ -68,5 +71,17 @@ public class BasicEnemyHandler : MonoBehaviour
         
     }
 
+    public void OnDeathDwarf()
+    {
+        GameObject skull = skullPrefab;
+        skull.transform.position = gameObject.transform.position;
+        Instantiate(skull);
+    }
+    public void OnDeathTroll()
+    {
+        GameObject heart = heartPrefab;
+        heart.transform.position = gameObject.transform.position;
+        Instantiate(heart);
+    }
 
 }

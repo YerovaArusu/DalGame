@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int maxCoins = 10;
     
     [Header("Enemy")]
-    [SerializeField] public GameObject enemyPrefab;
+    [SerializeField] public List<GameObject> enemyPrefabs;
     [SerializeField] public int maxEnemies = 10;
     
     private GameObject[] enemiesOnMap;
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
             float spawnX = MathHelper.getRandomFloat(-1 * mapWidth / 2, mapWidth / 2);
             float spawnY = MathHelper.getRandomFloat(-1 * mapHeight / 2, mapHeight / 2);
 
-            GameObject enemy = enemyPrefab;
+            GameObject enemy = getRandomGameObject(enemyPrefabs);
             Instantiate(enemy, new Vector3(spawnX, spawnY,-8f), Quaternion.Euler(0, 0, 0));
         }
     }
@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject getRandomGameObject(List<GameObject> prefabs)
     {
-        return prefabs[Random.Range(0,prefabs.Count-1)];
+        return prefabs[Random.Range(0,prefabs.Count)];
     }
     
 }

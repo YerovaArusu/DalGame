@@ -31,5 +31,5 @@ public class Collectible_System : MonoBehaviour
 
 public enum Collectible_Type
 {
-   NONE, COIN
+   NONE, COIN , SKULL , HEART
 }

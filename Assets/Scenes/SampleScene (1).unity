@@ -7255,8 +7255,10 @@ MonoBehaviour:
     m_Bits: 64
   coinPrefab: {fileID: 6409435580384920200, guid: 8cb741ef05724934fb20bba06fbd6c54, type: 3}
   maxCoins: 100
-  enemyPrefab: {fileID: 1060216371088900136, guid: 073678e3d95e5f541ba1a927c2ce9d30, type: 3}
-  maxEnemies: 10
+  enemyPrefabs:
+  - {fileID: 5316030914558137981, guid: 2a293094ad59dbe438a8d24bd8b353ec, type: 3}
+  - {fileID: 1060216371088900136, guid: 073678e3d95e5f541ba1a927c2ce9d30, type: 3}
+  maxEnemies: 20
 --- !u!4 &2127373189
 Transform:
   m_ObjectHideFlags: 0
