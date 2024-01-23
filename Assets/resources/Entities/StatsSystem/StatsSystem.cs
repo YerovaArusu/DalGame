@@ -27,12 +27,10 @@ public class StatsSystem : MonoBehaviour
     [SerializeField] private float staminaRegen = 2f;
     [SerializeField] private float staminaDrain = 2f;
 
-    [Header("Armor")]
+    [Header("Armor&Damage")]
     [SerializeField] private float defense = 0;
 
-    [Header("Coin")]
-    [SerializeField] private int coins = 5;
-    [SerializeField] public int maxCoins = 99;
+    [Header("Inventory")]
     public Inventory inventory;
     [SerializeField] public bool isPlayer = false;
     
@@ -40,7 +38,8 @@ public class StatsSystem : MonoBehaviour
     private float passiveHealPerInstance = 5;
     private int passiveHealInterval = 2500;
     private int startTime;
-    
+    private GameManager gameManager;
+    public WeaponHandler weaponHandler;
     public UnityEvent<GameObject> OnHit, OnDeath;
 
 
@@ -51,6 +50,8 @@ public class StatsSystem : MonoBehaviour
 
     void Start()
     {
+        //gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        //weaponHandler = GameObject.FindGameObjectWithTag("Weapon").GetComponent<WeaponHandler>();
         startTime = Time.frameCount;
         health = maxHealth;
         healthBar = Instantiate(healthBarPreFab, gameObject.transform);
@@ -71,6 +72,54 @@ public class StatsSystem : MonoBehaviour
         executePassiveHeal();
 
         healthBar.transform.Find("Bar").transform.localScale = new Vector3(getHealthPercent(), 1);
+        
+        foreach(Inventory.Slot slot in inventory.slots)
+        {
+            if (slot.type == Collectible_Type.HEART && Input.GetKey(KeyCode.H))
+            {
+                Debug.Log(slot.count);
+                heal(getMaxHealth()/2);
+                    slot.count = slot.count - 1;
+                    if (slot.count == 0)
+                    {
+                        slot.type = Collectible_Type.NONE; 
+                    }
+                   
+                
+               
+            }
+            if (slot.type == Collectible_Type.COIN && Input.GetKey(KeyCode.U))
+            {
+                weaponHandler.atkDamage += 0.25f;
+                slot.count = slot.count - 1;
+                if (slot.count == 0)
+                {
+                    slot.type = Collectible_Type.NONE; 
+                }
+            }
+            /*
+            if (slot.type == Collectible_Type.SKULL && Input.GetKey(KeyCode.T))
+            {
+                gameManager.maxEnemies -= 1;
+                Debug.Log(gameManager.maxEnemies);
+                slot.count = slot.count - 1;
+                if (slot.count == 0)
+                {
+                    slot.type = Collectible_Type.NONE; 
+                }
+            }
+            
+            if (slot.type == Collectible_Type.COIN && Input.GetKey(KeyCode.U))
+            {
+                weaponHandler.atkDamage += 0.25f;
+                slot.count = slot.count - 1;
+                if (slot.count == 0)
+                {
+                    slot.type = Collectible_Type.NONE; 
+                }
+            }
+            */
+        }
     }
 
 
@@ -205,18 +254,7 @@ public class StatsSystem : MonoBehaviour
     {
         enbalePassiveHealing = false;
     }
-
-    public void addCoin() {
-        if(coins + 1 <= maxCoins) coins++;
-    }
-
-    public void addCoin(int amount) {
-        coins = coins + amount <= maxCoins ? coins + amount : maxCoins;
-    }
-    public bool canAddCoins(int amount) {
-        if(coins + amount > maxCoins) return false; 
-        return true;
-    }
+    
 
     private float getDamageWithDefense(float damage) {
         //TODO: maxHealth might be needed to be changed if that doesnt work 

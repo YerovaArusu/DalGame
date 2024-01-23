@@ -12,6 +12,7 @@ public class WeaponHandler : MonoBehaviour
     
     public bool isAttacking { get; private set; }
     public Transform circleOrigin;
+    public float atkDamage = 20;
     [SerializeField] public float radius = 2f;
 
     public void resetIsAttacking()
@@ -58,7 +59,7 @@ public class WeaponHandler : MonoBehaviour
         {
                 if (isAttacking && !collider.transform.IsChildOf(transform.parent) && collider.transform.GetComponent<Collider2D>().TryGetComponent<StatsSystem>(out StatsSystem system))
                 {
-                    system.receiveDamage(20, transform.parent.gameObject, false);
+                    system.receiveDamage(atkDamage, transform.parent.gameObject, false);
                 }
         }
     }

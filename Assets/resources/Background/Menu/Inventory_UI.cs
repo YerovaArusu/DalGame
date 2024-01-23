@@ -45,45 +45,37 @@ public class Inventory_UI : MonoBehaviour
         }
     }
     
-    // ReSharper disable Unity.PerformanceAnalysis
     public void SetupInventory()
     {
         
-        // Check if the player and statsSystem are not null
+        
         if (player != null && statsSystem != null)
         {
-            // Check if the slots list is not null
             if (slots != null)
             {
-                // Ensure the slots list and inventory slots list have the same count
+                
                 if (slots.Count == statsSystem.inventory.slots.Count)
                 {
                     for (int i = 0; i < slots.Count; i++)
                     {
-                        // Check if the current slot and inventory slot are not null
+                     
                         if (slots[i] != null && statsSystem.inventory.slots[i] != null)
                         {
-                            Debug.LogError("if1");
                             if (statsSystem.inventory.slots[i].type != Collectible_Type.NONE)
                             {
                                 foreach (Inventory.Slot slot in statsSystem.inventory.slots)
                                 {
-                                    // Access individual slot properties
                                     Collectible_Type type = slot.type;
                                     int count = slot.count;
                                     int maxAllowed = slot.maxAllowed;
                                     Sprite icon = slot.icon;
-
-                                    // Do something with the slot information
-                                    Debug.Log($"Type: {type}, Count: {count}, Max Allowed: {maxAllowed}, Icon: {icon}");
-
+                                    
                                 }
 
                                 slots[i].SetItem(statsSystem.inventory.slots[i]);
                             }
                             else
                             {
-                                Debug.LogError("else");
                                 slots[i].SetEmpty();
                             }
                         }
