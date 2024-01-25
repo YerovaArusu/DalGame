@@ -50,8 +50,8 @@ public class StatsSystem : MonoBehaviour
 
     void Start()
     {
-        //gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
-        //weaponHandler = GameObject.FindGameObjectWithTag("Weapon").GetComponent<WeaponHandler>();
+        gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+        weaponHandler = GameObject.FindGameObjectWithTag("Weapon").GetComponent<WeaponHandler>();
         startTime = Time.frameCount;
         health = maxHealth;
         healthBar = Instantiate(healthBarPreFab, gameObject.transform);
@@ -75,50 +75,54 @@ public class StatsSystem : MonoBehaviour
         
         foreach(Inventory.Slot slot in inventory.slots)
         {
-            if (slot.type == Collectible_Type.HEART && Input.GetKey(KeyCode.H))
+            if (slot.type == Collectible_Type.HEART && Input.GetKeyDown(KeyCode.H) )
             {
-                Debug.Log(slot.count);
+                Debug.Log("SlotsHeart:" + slot.count);
                 heal(getMaxHealth()/2);
                     slot.count = slot.count - 1;
-                    if (slot.count == 0)
+                    if (slot.count <= 0)
                     {
                         slot.type = Collectible_Type.NONE; 
+                    }
+                    else
+                    {
+                        slot.count = slot.count - 1;
                     }
                    
                 
                
             }
-            if (slot.type == Collectible_Type.COIN && Input.GetKey(KeyCode.U))
-            {
-                weaponHandler.atkDamage += 0.25f;
-                slot.count = slot.count - 1;
-                if (slot.count == 0)
-                {
-                    slot.type = Collectible_Type.NONE; 
-                }
-            }
-            /*
-            if (slot.type == Collectible_Type.SKULL && Input.GetKey(KeyCode.T))
+            
+            if (slot.type == Collectible_Type.SKULL && Input.GetKeyDown(KeyCode.T))
             {
                 gameManager.maxEnemies -= 1;
                 Debug.Log(gameManager.maxEnemies);
-                slot.count = slot.count - 1;
-                if (slot.count == 0)
+                Debug.Log("SlotsSkull:" + slot.count);
+                if (slot.count <= 0)
                 {
                     slot.type = Collectible_Type.NONE; 
+                }
+                else
+                {
+                    slot.count = slot.count - 1;
                 }
             }
             
-            if (slot.type == Collectible_Type.COIN && Input.GetKey(KeyCode.U))
+            if (slot.type == Collectible_Type.COIN && Input.GetKeyDown(KeyCode.U))
             {
+                Debug.Log("SlotsCOIN:" + slot.count);
                 weaponHandler.atkDamage += 0.25f;
                 slot.count = slot.count - 1;
-                if (slot.count == 0)
+                if (slot.count <= 0)
                 {
                     slot.type = Collectible_Type.NONE; 
                 }
+                else
+                {
+                    slot.count = slot.count - 1;
+                }
             }
-            */
+            
         }
     }
 
