@@ -52,6 +52,7 @@
         - Improving the Methods used for Damage Calculation
         - Weapons will have a fixed Damage Value which is read from the read Weapon Object  
         - Coins are now collected in the StatsSystem 
+
 - 19.12.2023
   * Marcel: 
       - Attempting to fix the error with the InventoryUI
@@ -65,13 +66,40 @@
 - 09.01.2024
    * Marcel: 
       -  Further Implementation of the Inventory
-- 16.09.2024
+
+- 16.01.2024
    * Marcel: 
       -  Implementation of a Collectible-System with different types of items for the invenotry
+   * Kalvin: 
+      - Preparations for Procedual World Generation (Watching Videos & Local Tests)
 
-18.09.2024 
+- 18.01.2024 
    * Marcel: 
       - Combination of the Collectible-System and inventory
+   * Kalvin:
+      - Preparations for the Procedual Map Generation (Watching Videos & Local Tests)
+
+- 20.01.2024 (at Home)
+   * Kalvin:
+      - Implementation of the Procedual World Generation
+
+- 21.01.2024 (at Home)
+   * Kalvin:
+      - Bug Fixes and Improvement of the World Generation (Overlapping and Layermanagment)
+
+- 23.1.2024
+   * Marcel: 
+      - Creating of a new Entity: Troll
+      - Implementation of dropping Items
+   * Kalvin
+      - Minor changes to the world Generation 
+
+- 25.1.2024
+   * Marcel:
+      - Reducing the amount of Objects loaded 
+   * Kalvin:
+      - Update ReadMe
+      - Minor adjustments to the generation 
 
  ## Thanks to:
  - https://analogstudios.itch.io/ for the resources/sprites
