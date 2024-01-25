@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
     [Header("Enemy")]
     [SerializeField] public List<GameObject> enemyPrefabs;
     [SerializeField] public int maxEnemies = 10;
+
+    [Header("Inventory")] 
+    [SerializeField] public GameObject inventoryPrefab;
+    
     
     private GameObject[] enemiesOnMap;
     private GameObject[] coinsOnMap;
@@ -32,6 +36,7 @@ public class GameManager : MonoBehaviour
     {
         generateWorldMap();
         generateBorder();
+        generateInventory();
         
         
         
@@ -153,6 +158,13 @@ public class GameManager : MonoBehaviour
         }
     }
 }
+    private void generateInventory()
+    {
+      
+                        GameObject inventory = inventoryPrefab;
+                        inventory.transform.position = new Vector3(259, 247, 0);
+                        Instantiate(inventory);
+    }
 
     private float generateNoise(int x, int y, float detailScale)
     {
