@@ -43,11 +43,6 @@ public class GameManager : MonoBehaviour
         generateBorder();
         generatePlayer();
         generateInventory();
-        
-        
-        
-        
-        
     }
 
     // Update is called once per frame
@@ -167,9 +162,9 @@ public class GameManager : MonoBehaviour
 }
     private void generateInventory()
     {
-                        GameObject inventory = inventoryPrefab;
-                        inventory.transform.position = new Vector3(259, 247, 0);
-                        Instantiate(inventory);
+        GameObject inventory = inventoryPrefab;
+        inventory.transform.position = new Vector3(259, 247, 0);
+        Instantiate(inventory);
     }
     
     private void generatePlayer()
