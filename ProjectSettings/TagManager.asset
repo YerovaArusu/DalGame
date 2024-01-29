@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Coin
-  - Weapon
+  - Overlay
   layers:
   - Default
   - TransparentFX
