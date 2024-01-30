@@ -8,6 +8,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] public GameObject pauseMenu;
 
     private bool isPaused = false;
+
+    public bool keyup = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,16 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
+            if (Input.GetKeyUp(KeyCode.Escape))
+                {
+                    keyup = true;
+                }
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    keyup = false;
+                }
+
+        if (Input.GetKeyDown(KeyCode.Escape) && !keyup)
         {
             if (!isPaused) pauseGame();
             else resumeGame();
