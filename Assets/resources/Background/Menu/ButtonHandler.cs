@@ -1,24 +1,20 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ButtonHandler : MonoBehaviour
 {
-        [SerializeField] public Scene gameScene;
-        public Button button;
+    [SerializeField] private string sceneName; // Name of the scene to load
+    public Button button;
 
-        private void Start()
-        {
-                button = GetComponent<Button>();
-                button.onClick.AddListener(onStartButtonPress);
-        }
+    private void Start()
+    {
+        button = GetComponent<Button>();
+        button.onClick.AddListener(OnStartButtonPress);
+    }
 
-        void onStartButtonPress()
-        {
-                SceneManager.LoadScene("SampleScene (1)", LoadSceneMode.Single);
-        }
+    void OnStartButtonPress()
+    {
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+    }
 }

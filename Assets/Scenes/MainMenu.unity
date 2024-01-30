@@ -585,7 +585,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: OPTIONS
+  m_text: GUIDE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -796,8 +796,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 462a923e89c36b14a80253ba32df7085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameScene:
-    m_Handle: 0
+  sceneName: SampleScene (1)
   button: {fileID: 895479093}
 --- !u!1 &1250352950
 GameObject:
@@ -1194,8 +1193,9 @@ GameObject:
   - component: {fileID: 1738495752}
   - component: {fileID: 1738495751}
   - component: {fileID: 1738495750}
+  - component: {fileID: 1738495753}
   m_Layer: 5
-  m_Name: ExitButton
+  m_Name: OptionBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1303,6 +1303,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738495748}
   m_CullTransparentMesh: 1
+--- !u!114 &1738495753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738495748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462a923e89c36b14a80253ba32df7085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: GuideScene
+  button: {fileID: 1738495750}
 --- !u!1 &1990948639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,7 +1330,7 @@ GameObject:
   - component: {fileID: 1990948642}
   - component: {fileID: 1990948641}
   m_Layer: 5
-  m_Name: OptionsButton
+  m_Name: ExitBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

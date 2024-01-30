@@ -156,6 +156,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  keyup: 0
 --- !u!114 &7499664305676733720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,8 +262,8 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 4
+  m_Color: {r: 0.9528302, g: 0.38162655, b: 0.030562414, a: 1}
+  m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 000000003fc5512a

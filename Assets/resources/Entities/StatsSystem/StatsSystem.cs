@@ -41,6 +41,7 @@ public class StatsSystem : MonoBehaviour
     private GameManager gameManager;
     public WeaponHandler weaponHandler;
     public UnityEvent<GameObject> OnHit, OnDeath;
+    public bool keyup;
 
 
     void Awake()
@@ -67,59 +68,55 @@ public class StatsSystem : MonoBehaviour
 
     void Update()
     {
-        
         handleStamina();
         executePassiveHeal();
 
         healthBar.transform.Find("Bar").transform.localScale = new Vector3(getHealthPercent(), 1);
-        
+        if (Input.GetKeyUp(KeyCode.H) || Input.GetKeyUp(KeyCode.U) || Input.GetKeyUp(KeyCode.T))
+        {
+            keyup = true;
+        }
+        if (Input.GetKeyDown(KeyCode.H) || Input.GetKeyDown(KeyCode.U) || Input.GetKeyDown(KeyCode.T))
+        {
+            keyup = false;
+        }
         foreach(Inventory.Slot slot in inventory.slots)
         {
-            if (slot.type == Collectible_Type.HEART && Input.GetKeyDown(KeyCode.H) )
+            if (slot.type == Collectible_Type.HEART && Input.GetKeyDown(KeyCode.H) && !keyup )
             {
                 Debug.Log("SlotsHeart:" + slot.count);
                 heal(getMaxHealth()/2);
-                    slot.count = slot.count - 1;
-                    if (slot.count <= 0)
+                slot.count = slot.count - 1;
+                    if (slot.count == 0)
                     {
                         slot.type = Collectible_Type.NONE; 
                     }
-                    else
-                    {
-                        slot.count = slot.count - 1;
-                    }
+                   
                    
                 
                
             }
             
-            if (slot.type == Collectible_Type.SKULL && Input.GetKeyDown(KeyCode.T))
+            if (slot.type == Collectible_Type.SKULL && Input.GetKeyDown(KeyCode.T) && !keyup)
             {
                 gameManager.maxEnemies -= 1;
                 Debug.Log(gameManager.maxEnemies);
                 Debug.Log("SlotsSkull:" + slot.count);
-                if (slot.count <= 0)
+                slot.count = slot.count - 1;
+                if (slot.count == 0)
                 {
                     slot.type = Collectible_Type.NONE; 
                 }
-                else
-                {
-                    slot.count = slot.count - 1;
-                }
             }
             
-            if (slot.type == Collectible_Type.COIN && Input.GetKeyDown(KeyCode.U))
+            if (slot.type == Collectible_Type.COIN && Input.GetKeyDown(KeyCode.U) && !keyup)
             {
                 Debug.Log("SlotsCOIN:" + slot.count);
                 weaponHandler.atkDamage += 0.25f;
                 slot.count = slot.count - 1;
-                if (slot.count <= 0)
+                if (slot.count == 0)
                 {
                     slot.type = Collectible_Type.NONE; 
-                }
-                else
-                {
-                    slot.count = slot.count - 1;
                 }
             }
             
